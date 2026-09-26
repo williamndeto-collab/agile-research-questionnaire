@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agile Methodology and Project Performance Survey</title>
+    <meta
+      name="description"
+      content="Research questionnaire on Agile Methodology and Project Performance on ICT Projects in the Ministry of Transport, Kenya."
+    />
+    <style>
+      :root {
+        --bg: #f3f5f4;
+        --panel: rgba(255, 255, 255, 0.7);
+        --panel-strong: rgba(255, 255, 255, 0.92);
+        --primary: #0f7a4b;
+        --primary-deep: #0b5d39;
+        --primary-soft: rgba(15, 122, 75, 0.14);
+        --secondary: #c62828;
+        --secondary-soft: rgba(198, 40, 40, 0.12);
+        --ink: #111827;
+        --muted: #4b5563;
+        --line: rgba(17, 24, 39, 0.12);
+        --shadow: 0 18px 48px rgba(17, 24, 39, 0.13);
+        --success: #1e8e5e;
+        --warning: #e7a71b;
+        --radius: 22px;
+      }
+
+      * { box-sizing: border-box; }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(15, 122, 75, 0.12), transparent 30%),
+          radial-gradient(circle at bottom right, rgba(198, 40, 40, 0.08), transparent 30%),
+          linear-gradient(135deg, #f8faf9 0%, #edf4f0 100%);
+        color: var(--ink);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      .background-particles {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .particle {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(15, 122, 75, 0.2);
+        box-shadow: 0 0 18px rgba(15, 122, 75, 0.2);
+        animation: floatParticle linear infinite;
+      }
+
+      @keyframes floatParticle {
+        0% { transform: translateY(0) scale(0.7); opacity: 0.2; }
+        50% { opacity: 0.8; }
+        100% { transform: translateY(-100vh) scale(1.2); opacity: 0; }
+      }
+
+      .app-shell {
+        position: relative;
+        z-index: 1;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 24px 18px 60px;
+      }
+
+      .progress-wrap {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        backdrop-filter: blur(12px);
+        background: rgba(255, 255, 255, 0.38);
+        border-bottom: 1px solid rgba(17, 24, 39, 0.06);
+        margin: 0 -18px;
+        padding: 14px 18px 10px;
+      }
+
+      .progress-box {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .progress-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 10px;
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 600;
+      }
+
+      .progress-track {
+        width: 100%;
+        height: 12px;
+        border-radius: 999px;
+        background: rgba(17, 24, 39, 0.08);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .progress-fill {
+        height: 100%;
+        width: 0%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--primary) 0%, #1c9a64 45%, var(--secondary) 100%);
+        box-shadow: 0 6px 18px rgba(15, 122, 75, 0.25);
+        transition: width 0.6s ease;
+      }
+
+      .welcome-screen,
+      .completion-screen {
+        min-height: calc(100vh - 120px);
+        display: grid;
+        place-items: center;
+        padding: 32px 0 10px;
+      }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+      }
+
+      .welcome-card,
+      .completion-card {
+        width: min(860px, 100%);
+        padding: clamp(1.4rem, 2vw, 3rem);
+        overflow: hidden;
+      }
+
+      .welcome-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+
+      .survey-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(15, 122, 75, 0.08);
+        color: var(--primary-deep);
+        border: 1px solid rgba(15, 122, 75, 0.18);
+        border-radius: 999px;
+        padding: 8px 14px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        font-size: 0.7rem;
+      }
+
+      .survey-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, var(--primary), #2ba26b);
+        color: white;
+        font-size: 0.8rem;
+      }
+
+      h1, h2, h3, h4, p {
+        margin-top: 0;
+      }
+
+      .welcome-title {
+        text-align: center;
+        font-size: clamp(2rem, 4vw, 3.6rem);
+        line-height: 1.05;
+        letter-spacing: -0.04em;
+        margin: 18px 0 14px;
+      }
+
+      .welcome-title .highlight {
+        color: var(--primary);
+      }
+
+      .welcome-subtitle {
+        text-align: center;
+        max-width: 760px;
+        margin: 0 auto 30px;
+        color: var(--muted);
+        font-size: 1.04rem;
+        line-height: 1.7;
+      }
+
+      .welcome-points {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 14px;
+        margin: 18px 0 24px;
+      }
+
+      .point-card {
+        padding: 16px 18px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.46);
+        border: 1px solid rgba(17, 24, 39, 0.08);
+        color: var(--ink);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .point-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 22px rgba(15, 122, 75, 0.12);
+      }
+
+      .point-card strong {
+        display: block;
+        font-size: 1.8rem;
+        color: var(--primary);
+        margin-bottom: 6px;
+      }
+
+      .start-wrap {
+        display: flex;
+        justify-content: center;
+      }
+
+      .btn {
+        appearance: none;
+        border: none;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-deep));
+        color: #fff;
+        cursor: pointer;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+        box-shadow: 0 12px 26px rgba(15, 122, 75, 0.28);
+      }
+
+      .btn:hover,
+      .btn:focus-visible {
+        transform: translateY(-2px) scale(1.01);
+        box-shadow: 0 16px 30px rgba(15, 122, 75, 0.34);
+      }
+
+      .btn-primary {
+        padding: 14px 28px;
+        font-size: 1rem;
+        min-width: 180px;
+      }
+
+      .btn-secondary {
+        padding: 12px 22px;
+        background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(17, 24, 39, 0.8));
+        box-shadow: 0 12px 26px rgba(17, 24, 39, 0.25);
+      }
+
+      .btn-ghost {
+        background: rgba(255, 255, 255, 0.74);
+        border: 1px solid rgba(17, 24, 39, 0.12);
+        color: var(--ink);
+        box-shadow: none;
+      }
+
+      .survey-main {
+        display: none;
+        padding-top: 26px;
+      }
+
+      .survey-main.active {
+        display: block;
+        animation: fadeInUp 0.6s ease both;
+      }
+
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(19px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .section-panel {
+        padding: clamp(1.2rem, 2vw, 2rem);
+        margin-bottom: 24px;
+        opacity: 0;
+        transform: translateY(14px);
+        transition: opacity 0.55s ease, transform 0.55s ease;
+      }
+
+      .section-panel.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .section-header {
+        margin-bottom: 18px;
+      }
+
+      .section-kicker {
+        display: inline-block;
+        color: var(--primary-deep);
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+
+      .section-title {
+        font-size: clamp(1.6rem, 2.4vw, 2.3rem);
+        margin-bottom: 8px;
+      }
+
+      .section-subtitle {
+        color: var(--muted);
+        line-height: 1.7;
+        margin-bottom: 0;
+      }
+
+      .question-list {
+        display: grid;
+        gap: 18px;
+      }
+
+      .question-item {
+        background: rgba(255, 255, 255, 0.48);
+        border: 1px solid rgba(17, 24, 39, 0.08);
+        border-radius: 18px;
+        padding: 18px 16px 16px;
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .question-item:hover {
+        transform: translateY(-2px);
+        border-color: rgba(15, 122, 75, 0.24);
+        box-shadow: 0 10px 24px rgba(15, 122, 75, 0.08);
+      }
+
+      .question-text {
+        font-weight: 700;
+        color: var(--ink);
+        line-height: 1.45;
+        margin-bottom: 14px;
+      }
+
+      .likert-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 12px;
+      }
+
+      .option {
+        position: relative;
+        display: block;
+        min-height: 62px;
+      }
+
+      .option input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .option label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        min-height: 62px;
+        border-radius: 14px;
+        border: 1px solid rgba(17, 24, 39, 0.1);
+        background: rgba(255, 255, 255, 0.56);
+        padding: 10px 12px;
+        cursor: pointer;
+        transition: all 0.22s ease;
+      }
+
+      .option label:hover {
+        border-color: rgba(15, 122, 75, 0.28);
+        background: rgba(15, 122, 75, 0.04);
+      }
+
+      .option input:focus-visible + label {
+        outline: 3px solid rgba(15, 122, 75, 0.18);
+        outline-offset: 2px;
+      }
+
+      .radio-mark {
+        position: relative;
+        width: 22px;
+        height: 22px;
+        min-width: 22px;
+        border-radius: 50%;
+        border: 2px solid rgba(17, 24, 39, 0.2);
+        background: rgba(255, 255, 255, 0.58);
+        transition: all 0.24s ease;
+      }
+
+      .radio-mark::after {
+        content: "";
+        position: absolute;
+        inset: 5px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), #39a874);
+        transform: scale(0);
+        opacity: 0;
+        transition: all 0.2s ease;
+      }
+
+      .option input:checked + label {
+        border-color: rgba(15, 122, 75, 0.35);
+        background: linear-gradient(135deg, rgba(15, 122, 75, 0.12), rgba(15, 122, 75, 0.05));
+        box-shadow: inset 0 0 0 1px rgba(15, 122, 75, 0.12);
+      }
+
+      .option input:checked + label .radio-mark {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 4px rgba(15, 122, 75, 0.12);
+      }
+
+      .option input:checked + label .radio-mark::after {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      .option-label-text {
+        font-size: 0.96rem;
+        color: var(--ink);
+        line-height: 1.3;
+      }
+
+      .inline-choice {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .field-card {
+        background: rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(17, 24, 39, 0.08);
+        border-radius: 16px;
+        padding: 18px;
+      }
+
+      .field-group {
+        margin-bottom: 16px;
+      }
+
+      .field-group:last-child {
+        margin-bottom: 0;
+      }
+
+      .field-label {
+        display: block;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: var(--ink);
+      }
+
+      .text-input,
+      .select-input {
+        width: 100%;
+        border: 1px solid rgba(17, 24, 39, 0.15);
+        border-radius: 14px;
+        padding: 12px 14px;
+        font: inherit;
+        background: rgba(255, 255, 255, 0.8);
+        color: var(--ink);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .text-input:focus,
+      .select-input:focus {
+        outline: none;
+        border-color: rgba(15, 122, 75, 0.45);
+        box-shadow: 0 0 0 4px rgba(15, 122, 75, 0.1);
+      }
+
+      .checkbox-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        gap: 12px;
+      }
+
+      .choice-rich {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(17, 24, 39, 0.1);
+        background: rgba(255, 255, 255, 0.54);
+        cursor: pointer;
+      }
+
+      .choice-rich input {
+        accent-color: var(--primary);
+        width: 18px;
+        height: 18px;
+      }
+
+      .choice-rich span {
+        font-size: 0.96rem;
+      }
+
+      .control-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 14px;
+        margin-top: 18px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(17, 24, 39, 0.08);
+      }
+
+      .nav-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .muted-note {
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin-top: 8px;
+      }
+
+      .completion-card {
+        text-align: center;
+        padding: 32px 22px;
+      }
+
+      .success-mark {
+        width: 94px;
+        height: 94px;
+        margin: 0 auto 20px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: linear-gradient(135deg, rgba(15, 122, 75, 0.14), rgba(30, 142, 94, 0.08));
+        color: var(--success);
+        font-size: 2.6rem;
+        animation: pulseBadge 1.5s ease-in-out infinite;
+      }
+
+      @keyframes pulseBadge {
+        0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(30, 142, 94, 0.2); }
+        50% { transform: scale(1.05); box-shadow: 0 0 0 18px rgba(30, 142, 94, 0.04); }
+      }
+
+      .completion-card h2 {
+        font-size: clamp(2rem, 3vw, 3rem);
+        margin-bottom: 10px;
+      }
+
+      .completion-card p {
+        max-width: 620px;
+        margin: 0 auto 24px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .summary-box {
+        width: fit-content;
+        max-width: 100%;
+        margin: 0 auto 28px;
+        padding: 14px 18px;
+        border-radius: 14px;
+        background: rgba(15, 122, 75, 0.08);
+        border: 1px solid rgba(15, 122, 75, 0.18);
+        color: var(--primary-deep);
+        font-weight: 700;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      .confetti-canvas {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 100;
+      }
+
+      @media (max-width: 640px) {
+        .app-shell {
+          padding-left: 12px;
+          padding-right: 12px;
+        }
+
+        .progress-wrap {
+          margin: 0 -12px;
+          padding-left: 12px;
+          padding-right: 12px;
+        }
+
+        .progress-meta {
+          font-size: 0.72rem;
+        }
+
+        .likert-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .control-row {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .nav-group {
+          width: 100%;
+        }
+
+        .nav-group .btn {
+          flex: 1 1 160px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background-particles" aria-hidden="true" id="particles"></div>
+    <canvas id="confettiCanvas" class="confetti-canvas hidden" aria-hidden="true"></canvas>
+
+    <div class="app-shell">
+      <div class="progress-wrap">
+        <div class="progress-box">
+          <div class="progress-meta">
+            <span id="progressLabel">Welcome</span>
+            <span id="progressPercent">0%</span>
+          </div>
+          <div class="progress-track" aria-label="Questionnaire progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+        </div>
+      </div>
+
+      <section class="welcome-screen" id="welcomeScreen" aria-live="polite">
+        <div class="welcome-card glass-card">
+          <div class="welcome-header">
+            <div class="survey-badge">
+              <span class="survey-icon">✓</span>
+              Research Survey
+            </div>
+          </div>
+
+          <h1 class="welcome-title">
+            Agile Methodology and Project Performance on ICT Projects in the
+            <span class="highlight">Ministry of Transport, Kenya</span>
+          </h1>
+
+          <p class="welcome-subtitle">
+            This questionnaire is designed to collect information on the role of agile methodology in
+            improving project performance. Your responses are strictly confidential and will be used solely
+            for research purposes.
+          </p>
+
+          <div class="welcome-points">
+            <div class="point-card">
+              <strong>5</strong>
+              Point Likert Scale
+            </div>
+            <div class="point-card">
+              <strong>4</strong>
+              Agile Adoption Areas
+            </div>
+            <div class="point-card">
+              <strong>3</strong>
+              Project Performance Measures
+            </div>
+          </div>
+
+          <div class="start-wrap">
+            <button class="btn btn-primary" id="startSurveyBtn" type="button">Begin Questionnaire</button>
+          </div>
+        </div>
+      </section>
+
+      <main class="survey-main" id="surveyMain" aria-live="polite">
+        <form id="questionnaireForm" novalidate>
+          <section class="section-panel glass-card" data-section="A">
+            <div class="section-header">
+              <span class="section-kicker">Section A</span>
+              <h2 class="section-title">Demographic Information</h2>
+            </div>
+
+            <div class="field-card">
+              <div class="field-group">
+                <label class="field-label">1. Gender</label>
+                <div class="checkbox-grid" role="radiogroup" aria-label="Gender">
+                  <label class="choice-rich">
+                    <input type="radio" name="gender" value="Male" required />
+                    <span>Male</span>
+                  </label>
+                  <label class="choice-rich">
+                    <input type="radio" name="gender" value="Female" />
+                    <span>Female</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">2. Age</label>
+                <div class="checkbox-grid" role="radiogroup" aria-label="Age group">
+                  <label class="choice-rich"><input type="radio" name="age" value="20–29" required /><span>20–29</span></label>
+                  <label class="choice-rich"><input type="radio" name="age" value="30–39" /><span>30–39</span></label>
+                  <label class="choice-rich"><input type="radio" name="age" value="40–49" /><span>40–49</span></label>
+                  <label class="choice-rich"><input type="radio" name="age" value="50 and above" /><span>50 and above</span></label>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="jobDescription">3. Job Description</label>
+                <div class="checkbox-grid" role="radiogroup" aria-label="Job description">
+                  <label class="choice-rich"><input type="radio" name="jobDescription" value="ICT Officer" required /><span>ICT Officer</span></label>
+                  <label class="choice-rich"><input type="radio" name="jobDescription" value="Systems Analyst" /><span>Systems Analyst</span></label>
+                  <label class="choice-rich"><input type="radio" name="jobDescription" value="Software Developer" /><span>Software Developer</span></label>
+                  <label class="choice-rich"><input type="radio" name="jobDescription" value="Project Manager" /><span>Project Manager</span></label>
+                  <label class="choice-rich"><input type="radio" name="jobDescription" value="Procurement Officer" /><span>Procurement Officer</span></label>
+                  <label class="choice-rich"><input type="radio" name="jobDescription" value="Departmental Head" /><span>Departmental Head</span></label>
+                  <label class="choice-rich"><input type="radio" name="jobDescription" value="End-user Representative" /><span>End-user Representative</span></label>
+                  <label class="choice-rich"><input type="radio" name="jobDescription" value="Other" /><span>Other</span></label>
+                </div>
+                <div class="field-group" style="margin-top: 14px;">
+                  <input id="otherJob" class="text-input" type="text" placeholder="If other, specify here" aria-label="Other job description" />
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">4. Years of experience in ICT projects</label>
+                <div class="checkbox-grid" role="radiogroup" aria-label="Experience in ICT projects">
+                  <label class="choice-rich"><input type="radio" name="experience" value="Less than 1 year" required /><span>Less than 1 year</span></label>
+                  <label class="choice-rich"><input type="radio" name="experience" value="1–3 years" /><span>1–3 years</span></label>
+                  <label class="choice-rich"><input type="radio" name="experience" value="4–6 years" /><span>4–6 years</span></label>
+                  <label class="choice-rich"><input type="radio" name="experience" value="Over 6 years" /><span>Over 6 years</span></label>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">5. Have you previously worked on a project using agile methodology?</label>
+                <div class="checkbox-grid" role="radiogroup" aria-label="Previous agile project experience">
+                  <label class="choice-rich"><input type="radio" name="previousAgile" value="Yes" required /><span>Yes</span></label>
+                  <label class="choice-rich"><input type="radio" name="previousAgile" value="No" /><span>No</span></label>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div id="dynamicSections"></div>
+
+          <div class="control-row glass-card" style="padding: 16px 18px; margin-bottom: 8px;">
+            <div class="muted-note">All responses are voluntary and confidential.</div>
+            <div class="nav-group">
+              <button type="button" class="btn btn-ghost" id="prevBtn">Back</button>
+              <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
+            </div>
+          </div>
+        </form>
+      </main>
+
+      <section class="completion-screen hidden" id="completionScreen" aria-live="polite">
+        <div class="completion-card glass-card">
+          <div class="success-mark">✓</div>
+          <h2>Survey Submitted Successfully</h2>
+          <p>
+            Thank you for taking the time to complete this research questionnaire. Your input will help in
+            understanding the impact of agile methodology on ICT project performance in the Ministry of Transport, Kenya.
+          </p>
+          <div class="summary-box" id="completionSummary">Response captured</div>
+          <button class="btn btn-primary" type="button" id="restartBtn">Submit Another Response</button>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const sections = [
+        {
+          id: 'B1',
+          title: 'B1. Stakeholder Collaboration',
+          intro: 'Scale: a = Strongly Disagree, b = Disagree, c = Neutral, d = Agree, e = Strongly Agree',
+          questions: [
+            'Our ICT projects frequently use sprints of about 4 weeks to divide work.',
+            'Teams use a prioritization method to manage project requirements.',
+            'Daily stand-up meetings are conducted to review progress.',
+            'Backlog grooming and refinement sessions are regularly conducted.',
+            'User stories are used to capture system requirements.',
+            'Deliverables are reviewed every month at the end of each sprint.'
+          ]
+        },
+        {
+          id: 'B2',
+          title: 'B2. Cross-Functional Teams',
+          intro: 'Scale: a = Strongly Disagree, b = Disagree, c = Neutral, d = Agree, e = Strongly Agree',
+          questions: [
+            'Project teams collaborate closely throughout the project.',
+            'Team members have lots of freedom in decision-making.',
+            'Communication among project members is frequent and transparent.',
+            'Cross-functional teams work together to deliver project outputs. e.g. developers and business analysts.'
+          ]
+        },
+        {
+          id: 'B3',
+          title: 'B3. Adaptive Planning',
+          intro: 'Scale: a = Strongly Disagree, b = Disagree, c = Neutral, d = Agree, e = Strongly Agree',
+          questions: [
+            'Teams support the adoption of daily synchronization of tasks.',
+            'Tasks are divided into 4-week batches.',
+            'Leadership maps out progress every cycle.'
+          ]
+        },
+        {
+          id: 'B4',
+          title: 'B4. Continuous Improvement',
+          intro: 'Scale: a = Strongly Disagree, b = Disagree, c = Neutral, d = Agree, e = Strongly Agree',
+          questions: [
+            'Teams meet at the end of each cycle to review progress.',
+            'Teams conduct evaluations of quality.',
+            'Teams evaluate the operational workflow of projects.',
+            'Every team member actively engaged throughout the project.'
+          ]
+        },
+        {
+          id: 'C1',
+          title: 'C1. Schedule Performance',
+          intro: 'Scale: a = Strongly Disagree, b = Disagree, c = Neutral, d = Agree, e = Strongly Agree',
+          questions: [
+            'ICT projects are completed within the planned schedule.',
+            'Agile approaches help the team detect delays early.',
+            'Sprint reviews help the project stay on track.'
+          ]
+        },
+        {
+          id: 'C2',
+          title: 'C2. Cost Performance',
+          intro: 'Scale: a = Strongly Disagree, b = Disagree, c = Neutral, d = Agree, e = Strongly Agree',
+          questions: [
+            'ICT projects stay within the approved budget.',
+            'Agile approaches reduce unnecessary project costs.'
+          ]
+        },
+        {
+          id: 'C3',
+          title: 'C3. Quality Performance',
+          intro: 'Scale: a = Strongly Disagree, b = Disagree, c = Neutral, d = Agree, e = Strongly Agree',
+          questions: [
+            'The final ICT deliverables meet quality expectations.',
+            'Frequent testing during sprints improves overall system quality.',
+            'System defects are identified and resolved quickly.',
+            'End users are satisfied with the final ICT system delivered.',
+            'Users are involved throughout the development process.',
+            'The delivered systems meet users\' needs and expectations.'
+          ]
+        }
+      ];
+
+      const scale = [
+        { value: 'a', label: 'Strongly Disagree' },
+        { value: 'b', label: 'Disagree' },
+        { value: 'c', label: 'Neutral' },
+        { value: 'd', label: 'Agree' },
+        { value: 'e', label: 'Strongly Agree' }
+      ];
+
+      const dynamicSections = document.getElementById('dynamicSections');
+      const welcomeScreen = document.getElementById('welcomeScreen');
+      const surveyMain = document.getElementById('surveyMain');
+      const completionScreen = document.getElementById('completionScreen');
+      const nextBtn = document.getElementById('nextBtn');
+      const prevBtn = document.getElementById('prevBtn');
+      const startSurveyBtn = document.getElementById('startSurveyBtn');
+      const restartBtn = document.getElementById('restartBtn');
+      const progressFill = document.getElementById('progressFill');
+      const progressPercent = document.getElementById('progressPercent');
+      const progressLabel = document.getElementById('progressLabel');
+
+      let currentSectionIndex = 0;
+      let sectionEls = [];
+      let totalSections = 0;
+
+      function buildSections() {
+        dynamicSections.innerHTML = '';
+        sections.forEach((section, index) => {
+          const panel = document.createElement('section');
+          panel.className = 'section-panel glass-card';
+          panel.dataset.index = index;
+          panel.setAttribute('aria-label', `${section.title}`);
+
+          const header = document.createElement('div');
+          header.className = 'section-header';
+          header.innerHTML = `
+            <span class="section-kicker">${section.id}</span>
+            <h2 class="section-title">${section.title}</h2>
+            <p class="section-subtitle">${section.intro}</p>
+          `;
+
+          const list = document.createElement('div');
+          list.className = 'question-list';
+
+          section.questions.forEach((question, qIndex) => {
+            const item = document.createElement('div');
+            item.className = 'question-item';
+            item.innerHTML = `
+              <div class="question-text">${qIndex + 1}. ${question}</div>
+              <div class="likert-grid" role="radiogroup" aria-label="${question}">
+                ${scale.map((option) => `
+                  <div class="option">
+                    <input type="radio" id="${section.id}-${qIndex}-${option.value}" name="${section.id}-${qIndex}" value="${option.value}" required />
+                    <label for="${section.id}-${qIndex}-${option.value}">
+                      <span class="radio-mark" aria-hidden="true"></span>
+                      <span class="option-label-text">${option.label}</span>
+                    </label>
+                  </div>
+                `).join('')}
+              </div>
+            `;
+            list.appendChild(item);
+          });
+
+          panel.appendChild(header);
+          panel.appendChild(list);
+          dynamicSections.appendChild(panel);
+        });
+
+        sectionEls = Array.from(document.querySelectorAll('.section-panel'));
+        totalSections = sectionEls.length + 1;
+        hideAllSections();
+        showCurrentSection();
+      }
+
+      function hideAllSections() {
+        sectionEls.forEach((element) => {
+          element.classList.remove('visible');
+          element.style.display = 'none';
+        });
+      }
+
+      function showCurrentSection() {
+        hideAllSections();
+
+        const sectionToShow = sectionEls[currentSectionIndex] || null;
+        if (sectionToShow) {
+          sectionToShow.style.display = 'block';
+          requestAnimationFrame(() => {
+            sectionToShow.classList.add('visible');
+          });
+        }
+
+        updateNavigation();
+      }
+
+      function updateProgress() {
+        const progressBase = 1;
+        const effective = Math.min((currentSectionIndex + progressBase) / totalSections, 1);
+        const percent = Math.round(effective * 100);
+
+        progressFill.style.width = `${percent}%`;
+        progressPercent.textContent = `${percent}%`;
+        progressFill.parentElement.setAttribute('aria-valuenow', String(percent));
+
+        if (currentSectionIndex === 0 && percent < 10) {
+          progressLabel.textContent = 'Start';
+        } else if (currentSectionIndex < sectionEls.length) {
+          progressLabel.textContent = `Section ${currentSectionIndex + 1}`;
+        } else {
+          progressLabel.textContent = 'Complete';
+        }
+      }
+
+      function updateNavigation() {
+        const total = sectionEls.length;
+
+        if (currentSectionIndex === 0) {
+          prevBtn.classList.add('hidden');
+        } else {
+          prevBtn.classList.remove('hidden');
+        }
+
+        if (currentSectionIndex >= total - 1) {
+          nextBtn.textContent = 'Submit Survey';
+        } else {
+          nextBtn.textContent = 'Next';
+        }
+
+        updateProgress();
+      }
+
+      function validateCurrentSection() {
+        const activePanel = sectionEls[currentSectionIndex];
+        if (!activePanel) return true;
+
+        const inputs = [...activePanel.querySelectorAll('input[type="radio"]')];
+        const answered = inputs.filter((input) => input.checked).length > 0;
+
+        if (!answered) {
+          activePanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          activePanel.animate(
+            [
+              { boxShadow: '0 0 0 rgba(198, 40, 40, 0)' },
+              { boxShadow: '0 0 0 4px rgba(198, 40, 40, 0.12)' },
+              { boxShadow: '0 0 0 rgba(198, 40, 40, 0)' }
+            ],
+            { duration: 520, easing: 'ease-out' }
+          );
+          alert('Please complete all questions in this section before continuing.');
+          return false;
+        }
+
+        return true;
+      }
+
+      function validateDemographic() {
+        const required = ['gender', 'age', 'jobDescription', 'experience', 'previousAgile'];
+        for (const name of required) {
+          const checked = document.querySelector(`input[name="${name}"]:checked`);
+          if (!checked) {
+            document.querySelector('section[data-section="A"]').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            alert('Please complete all demographic questions before continuing.');
+            return false;
+          }
+        }
+
+        if (document.querySelector('input[name="jobDescription"][value="Other"]:checked')) {
+          const otherValue = document.getElementById('otherJob').value.trim();
+          if (!otherValue) {
+            alert('Please specify the other job description.');
+            document.getElementById('otherJob').focus();
+            return false;
+          }
+        }
+
+        return true;
+      }
+
+      function getQuestionCount() {
+        let count = 0;
+        sections.forEach((section) => { count += section.questions.length; });
+        return count;
+      }
+
+      function createParticles() {
+        const particleCount = 20;
+        const container = document.getElementById('particles');
+        for (let i = 0; i < particleCount; i++) {
+          const dot = document.createElement('span');
+          dot.className = 'particle';
+          dot.style.left = `${Math.random() * 100}%`;
+          dot.style.top = `${Math.random() * 100}%`;
+          dot.style.animationDelay = `${(Math.random() * 10).toFixed(1)}s`;
+          dot.style.animationDuration = `${(Math.random() * 12 + 14).toFixed(1)}s`;
+          dot.style.opacity = (Math.random() * 0.7 + 0.2).toFixed(2);
+          dot.style.width = `${Math.random() * 12 + 6}px`;
+          dot.style.height = dot.style.width;
+          container.appendChild(dot);
+        }
+      }
+
+      function handleScrollReveal() {
+        const revealItems = document.querySelectorAll('.section-panel, .question-item');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, { threshold: 0.12 });
+
+        revealItems.forEach((el) => observer.observe(el));
+      }
+
+      function startSurvey() {
+        welcomeScreen.classList.add('hidden');
+        surveyMain.classList.add('active');
+        currentSectionIndex = 0;
+        showCurrentSection();
+        updateProgress();
+      }
+
+      function nextSection() {
+        if (!validateDemographic() && currentSectionIndex === 0) return;
+        if (currentSectionIndex >= 0 && !validateCurrentSection()) return;
+
+        if (currentSectionIndex < sectionEls.length - 1) {
+          currentSectionIndex += 1;
+          showCurrentSection();
+          return;
+        }
+
+        if (currentSectionIndex === sectionEls.length - 1) {
+          submitSurvey();
+        }
+      }
+
+      function previousSection() {
+        if (currentSectionIndex > 0) {
+          currentSectionIndex -= 1;
+          showCurrentSection();
+        }
+      }
+
+      function submitSurvey() {
+        surveyMain.classList.remove('active');
+        completionScreen.classList.remove('hidden');
+        progressFill.style.width = '100%';
+        progressPercent.textContent = '100%';
+        progressLabel.textContent = 'Complete';
+        document.getElementById('completionSummary').textContent = `Submitted ${getQuestionCount()} questionnaire items successfully.`;
+        startConfetti();
+      }
+
+      function restartSurvey() {
+        document.getElementById('questionnaireForm').reset();
+        document.getElementById('otherJob').value = '';
+        currentSectionIndex = 0;
+        completionScreen.classList.add('hidden');
+        welcomeScreen.classList.remove('hidden');
+        surveyMain.classList.remove('active');
+        progressFill.style.width = '0%';
+        progressPercent.textContent = '0%';
+        progressLabel.textContent = 'Welcome';
+        nextBtn.textContent = 'Next';
+        prevBtn.classList.add('hidden');
+        stopConfetti();
+      }
+
+      function startConfetti() {
+        const canvas = document.getElementById('confettiCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.classList.remove('hidden');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const pieces = [];
+        const colors = ['#0f7a4b', '#d32f2f', '#111827', '#ffffff', '#e7a71b', '#2a9d8f'];
+
+        for (let i = 0; i < 180; i++) {
+          pieces.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * -canvas.height,
+            r: Math.random() * 6 + 4,
+            d: Math.random() * 30 + 10,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            tilt: Math.random() * 10 - 10,
+            tiltAngle: Math.random() * Math.PI,
+            spin: Math.random() * 0.08 + 0.03
+          });
+        }
+
+        function renderConfetti() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          pieces.forEach((piece) => {
+            ctx.beginPath();
+            ctx.lineWidth = piece.r;
+            ctx.strokeStyle = piece.color;
+            ctx.moveTo(piece.x + piece.tilt + piece.r, piece.y);
+            ctx.lineTo(piece.x + piece.tilt, piece.y + piece.r * 2);
+            ctx.stroke();
+
+            piece.y += piece.d * 0.5;
+            piece.x += Math.sin(piece.tiltAngle) * 1.2;
+            piece.tiltAngle += piece.spin;
+            piece.tilt += piece.spin * 2;
+
+            if (piece.y > canvas.height + 20) {
+              piece.y = -20;
+              piece.x = Math.random() * canvas.width;
+            }
+          });
+
+          requestAnimationFrame(renderConfetti);
+        }
+
+        renderConfetti();
+      }
+
+      function stopConfetti() {
+        const canvas = document.getElementById('confettiCanvas');
+        canvas.classList.add('hidden');
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        buildSections();
+        createParticles();
+        handleScrollReveal();
+        prevBtn.classList.add('hidden');
+
+        startSurveyBtn.addEventListener('click', startSurvey);
+        nextBtn.addEventListener('click', nextSection);
+        prevBtn.addEventListener('click', previousSection);
+        restartBtn.addEventListener('click', restartSurvey);
+
+        window.addEventListener('resize', () => {
+          const canvas = document.getElementById('confettiCanvas');
+          if (!canvas.classList.contains('hidden')) {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
